@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { BigNumber, utils } from "ethers";
-import { useBalance } from "eth-hooks";
+import { useState } from 'react';
+import { BigNumber, utils } from 'ethers';
+import { useBalance } from 'eth-hooks';
 
 export interface BalanceProps {
   address: string;
@@ -27,7 +27,7 @@ export const Balance = (props: BalanceProps): UseBalanceResult => {
     resolvedBalance = BigNumber.from(balance);
   }
 
-  let floatBalance = parseFloat("0.00");
+  let floatBalance = parseFloat('0.00');
   if (resolvedBalance) {
     const etherBalance = utils.formatEther(resolvedBalance);
     floatBalance = parseFloat(etherBalance);
@@ -36,7 +36,7 @@ export const Balance = (props: BalanceProps): UseBalanceResult => {
   let displayBalance = floatBalance.toFixed(4);
   const price = props.price ?? props.dollarMultiplier;
   if (price && dollarMode) {
-    displayBalance = "$" + (floatBalance * price).toFixed(2);
+    displayBalance = '$' + (floatBalance * price).toFixed(2);
   }
 
   const toggleMode = () => {

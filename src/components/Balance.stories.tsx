@@ -1,10 +1,10 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Balance } from "./Balance";
+import { Balance } from './Balance';
 
 const BalanceComponent: React.FC = () => {
   const { displayBalance, toggleMode } = Balance({
-    address: "0xaCF16886eFa51FF0957EF321B8510e53D67d1D7c",
+    address: '0x0000000000000000000000000000000000000000',
   });
 
   return (
@@ -16,10 +16,8 @@ const BalanceComponent: React.FC = () => {
 };
 
 export default {
-  title: "Balance",
+  title: 'Balance',
   component: BalanceComponent,
 } as ComponentMeta<typeof BalanceComponent>;
 
-export const Primary: ComponentStory<typeof BalanceComponent> = () => (
-  <BalanceComponent></BalanceComponent>
-);
+export const Primary: ComponentStory<typeof BalanceComponent> = () => <BalanceComponent></BalanceComponent>;
