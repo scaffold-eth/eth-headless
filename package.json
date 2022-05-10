@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "esbuild src/index.ts --bundle --minify --outdir=./lib",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
@@ -27,6 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "esbuild": "^0.14.38",
     "prettier": "^2.6.2",
     "prettier-eslint": "^14.0.1",
     "webpack": "^5.72.0"
