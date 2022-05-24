@@ -1,14 +1,13 @@
 {
   "name": "eth-headless",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "clean": "shx rm -rf ./lib",
+    "build": "yarn clean && node esbuild.config.mjs && ts-patch i -s && tsc -p tsconfig.build.json",
+    "package": "shx cp -R package.json ./lib && shx cp -R README.md ./lib",
+    "publish:yalc": "yarn build && yarn package && cd lib && yalc publish --no-script --push"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -29,6 +28,13 @@
   "devDependencies": {
     "prettier": "^2.6.2",
     "prettier-eslint": "^14.0.1",
-    "webpack": "^5.72.0"
-  }
+    "webpack": "^5.72.0",
+    "shx": "^0.3.4",
+    "esbuild": "^0.14.38",
+    "esbuild-node-externals": "^1.4.1",
+    "tsconfig-paths": "^3.14.1",
+    "ts-patch": "^2.0.1",
+    "typescript-transform-paths": "^3.3.1"
+  },
+  "license": "MIT"
 }
