@@ -1,16 +1,46 @@
 {
   "name": "eth-headless",
   "version": "0.1.0",
+  "description": "A base for building web3 components",
+  "repository": "https://github.com/scaffold-eth/eth-headless.git",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "contributors": [
+    {
+      "name": "Austin Griffith",
+      "url": "https://github.com/austintgriffith"
+    },
+    {
+      "name": "Shravan Sunder",
+      "url": "https://github.com/ShravanSunder"
+    }
+  ],
   "scripts": {
+    "watch": "tsc -w --noEmit",
     "clean": "shx rm -rf ./lib",
     "build": "yarn clean && node esbuild.config.mjs && ts-patch i -s && tsc -p tsconfig.build.json",
     "package": "shx cp -R package.json ./lib && shx cp -R README.md ./lib",
+    "publish:pre": "yarn clean && yarn build && yarn package",
     "publish:yalc": "yarn build && yarn package && cd lib && yalc publish --no-script --push",
+    "publish:next": "yarn build && yarn package && cd lib && npm publish --tag next",
+    "publish:latest": "yarn build && yarn package && cd lib && npm publish --tag latest",
     "lint": "eslint --config ./.eslintrc --ignore-path ./.eslintignore ./src/**/*.(ts|tsx) ./test/**/*.(ts|tsx)",
     "lint:report": "eslint --config ./.eslintrc --ignore-path ./.eslintignore --output-file eslint_report.json --format json ./src/**/*.(ts|tsx)",
     "format": "yarn prettier -w ./src ./test",
     "format:check": "yarn prettier -c ./src ./test",
-    "test": "TS_NODE_PROJECT=tsconfig.testing.json TS_NODE_TRANSPILE_ONLY=1 mocha ./test/**/*.test.(ts|tsx)"
+    "test": "TS_NODE_PROJECT=tsconfig.testing.json TS_NODE_TRANSPILE_ONLY=1 mocha ./test/**/*.test.(ts|tsx)",
+    "prepare": "cd .. && yarn husky install",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "dependencies": {
     "eth-hooks": "^4.0.48",
@@ -21,6 +51,10 @@
     "ts-invariant": "^0.9.4",
     "use-debounce": "^8.0.0",
     "usehooks-ts": "^2.5.2"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.13.0",
@@ -79,8 +113,15 @@
     "typescript": "^4.6.4",
     "typescript-transform-paths": "^3.3.1"
   },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "react",
+    "create-eth-app",
+    "typescript"
+  ],
   "license": "MIT",
-  "packageManager": "yarn@3.1.1",
+  "packageManager": "yarn@3.2.0",
   "volta": {
     "node": "16.13.1"
   },
