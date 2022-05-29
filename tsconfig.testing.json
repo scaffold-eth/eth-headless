@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "types": ["mocha"]
   },
+  "files": ["hardhat.config.ts"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
