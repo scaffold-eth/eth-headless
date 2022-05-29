@@ -1,4 +1,4 @@
-import { should, use, } from 'chai';
+import { should, use } from 'chai';
 import sinonChai from 'sinon-chai';
 
 use(sinonChai);
