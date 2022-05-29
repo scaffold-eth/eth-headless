@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { BigNumber, utils } from 'ethers';
 import { useBalance } from 'eth-hooks';
+import { BigNumber, utils } from 'ethers';
+import { useState } from 'react';
 
 export interface EthBalanceProps {
   address: string;
@@ -35,7 +35,7 @@ export const useEthBalance = (props: EthBalanceProps): EthBalanceResult => {
     balance = `$${(floatBalance * price).toFixed(2)}`;
   }
 
-  const toggleMode = () => {
+  const toggleMode = (): void => {
     setDollarMode(!dollarMode);
   };
 

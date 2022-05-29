@@ -24,7 +24,7 @@
     "strict": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "types": [],
+    "typeRoots": ["node_modules/@types"],
     "paths": {
       "~~": ["./src/"],
       "~~/*": ["./src/*"]
